@@ -12,3 +12,4 @@ export interface HomeBanner {
   type: number
   url: string
 }
+

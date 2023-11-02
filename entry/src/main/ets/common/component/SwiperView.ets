@@ -1,3 +1,4 @@
+import router from '@ohos.router';
 import CommonConstants from '../CommonConstants'
 import { HomeBanner } from '../http/response/HomeBannerResponse'
 
@@ -11,7 +12,17 @@ export default struct SwiperView {
   build() {
     Swiper(this.swiperController) {
       ForEach(this.homeBannerList, (item: HomeBanner) => {
-        Image(item.imagePath).borderRadius('16vp').width('100%').height(160).objectFit(ImageFit.Contain)
+        Image(item.imagePath)
+          .borderRadius('16vp')
+          .width('100%')
+          .height(160)
+          .objectFit(ImageFit.Contain)
+          .onClick(() => {
+            router.pushUrl({
+              url: 'pages/ArticleDetailWebPage',
+              params: { path: item.url }
+            })
+          })
       }, (item: Resource) => JSON.stringify(item))
     }
     .displayCount(CommonConstants.SWIPER_CACHE_COUNT)

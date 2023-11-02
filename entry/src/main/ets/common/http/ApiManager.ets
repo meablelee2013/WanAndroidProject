@@ -1,4 +1,5 @@
 import { Logger } from '../utils/Logger'
+import { HomeArticleResponse } from './response/HomeArticleResponse'
 import { HomeBannerResponse } from './response/HomeBannerResponse'
 
 import { TaskManager } from './TaskManager'
@@ -18,6 +19,18 @@ export default class ApiManager {
     }
     if (response.result != null) {
       Logger.info("requestHomeBanner", JSON.stringify(response.result))
+    }
+    return response.result
+
+  }
+
+  async requestHomeArticle(): Promise<HomeArticleResponse> {
+    var response = await TaskManager.getInstance().requestHomeArticle()
+    if (response.code == -1) {
+
+    }
+    if (response.result != null) {
+      Logger.info("requestHomeArticle", JSON.stringify(response.result))
     }
     return response.result
 
