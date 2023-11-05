@@ -1,12 +1,19 @@
+import MineTreeList from './MineTreeList'
+import TitleBarComponent from './TitleBarComponent'
+
 @Preview
 @Component
 export default struct Mine {
+
+
+
+
   build() {
-    Text('mine')
-      .width('100%')
-      .alignSelf(ItemAlign.Center)
-      .border({ width: 1, color: Color.Red })
-      .height('100%')
-      .backgroundColor(Color.Gray)
+    Flex({ direction: FlexDirection.Column, justifyContent: FlexAlign.Start, alignContent: FlexAlign.Start }) {
+
+      TitleBarComponent({ isBack: false })
+      MineTreeList()
+
+    }.height('100%').width('100%')
   }
 }

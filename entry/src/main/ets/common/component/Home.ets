@@ -19,20 +19,10 @@ export default struct Home {
     ApiManager.getInstance().requestHomeBanner().then((resp: HomeBannerResponse) => {
       if (resp.errorCode == 0) {
         this.homeBannerList = resp.data
-        // Logger.info("alex", "homeBannerList", JSON.stringify(this.homeBannerList))
       }
     }).catch((e) => {
       Logger.info(e)
     })
-
-    // ApiManager.getInstance().requestHomeArticle(0).then((resp: HomeArticleResponse) => {
-    //   if (resp.errorCode == 0 && resp.data != null) {
-    //     this.homeArticleList = resp.data.datas
-    //     Logger.info("alex", "homeArticleModel", JSON.stringify(this.homeArticleList))
-    //   }
-    // }).catch((e) => {
-    //   Logger.info(e)
-    // })
   }
 
   build() {
