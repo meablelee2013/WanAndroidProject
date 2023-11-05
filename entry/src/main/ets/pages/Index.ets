@@ -1,6 +1,7 @@
 import CommonConstants from '../common/CommonConstants'
 import Home from '../common/component/Home'
 import Mine from '../common/component/Mine'
+import { Logger } from '../common/utils/Logger'
 
 
 @Entry
@@ -23,7 +24,7 @@ struct Index {
       }.tabBar(this.TabBuilder(CommonConstants.MINE_TITLE, CommonConstants.MINE_TAB_INDEX,
         $r('app.media.mine_selected'), $r('app.media.mine_normal')))
     }.onChange((index: number) => {
-      this.currentIndex == index
+      this.tabOnchange(index)
     })
   }
 
@@ -39,8 +40,12 @@ struct Index {
         .lineHeight(14)
     }.width('100%')
     .onClick(() => {
-      this.currentIndex = index
-      this.controller.changeIndex(index)
+      this.tabOnchange(index)
     })
+  }
+
+  tabOnchange(index: number) {
+    this.currentIndex = index
+    this.controller.changeIndex(index)
   }
 }
