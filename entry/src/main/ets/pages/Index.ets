@@ -1,6 +1,8 @@
 import CommonConstants from '../common/CommonConstants'
 import Home from '../common/component/Home'
 import Mine from '../common/component/Mine'
+import Project from '../common/component/Project'
+import Tree from '../common/component/Tree'
 import { Logger } from '../common/utils/Logger'
 
 
@@ -20,9 +22,21 @@ struct Index {
         $r('app.media.home_selected'), $r('app.media.home_normal')))
 
       TabContent() {
+        Project()
+      }.tabBar(this.TabBuilder(CommonConstants.PROJECT_TITLE, CommonConstants.PROJECT_TAB_INDEX,
+        $r('app.media.project_selected'), $r('app.media.project_normal')))
+
+      TabContent() {
+        Tree()
+      }.tabBar(this.TabBuilder(CommonConstants.TREE_TITLE, CommonConstants.TREE_TAB_INDEX,
+        $r('app.media.tree_selected'), $r('app.media.tree_normal')))
+
+      TabContent() {
         Mine()
       }.tabBar(this.TabBuilder(CommonConstants.MINE_TITLE, CommonConstants.MINE_TAB_INDEX,
         $r('app.media.mine_selected'), $r('app.media.mine_normal')))
+
+
     }.onChange((index: number) => {
       this.tabOnchange(index)
     })

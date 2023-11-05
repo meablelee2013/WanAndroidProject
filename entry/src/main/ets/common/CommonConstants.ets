@@ -7,17 +7,34 @@ export default class CommonConstants {
   /**
    * Title text of the setting page
    */
+  static readonly PROJECT_TITLE = '项目';
+  /**
+   * Title text of the setting page
+   */
+  static readonly TREE_TITLE = '体系';
+
+  /**
+   * Title text of the setting page
+   */
   static readonly MINE_TITLE = '我的';
 
   /**
    * Home tab index
    */
   static readonly HOME_TAB_INDEX = 0;
+  /**
+   * Home tab index
+   */
+  static readonly PROJECT_TAB_INDEX = 1;
+  /**
+   * Home tab index
+   */
+  static readonly TREE_TAB_INDEX = 2;
 
   /**
    * Mine tab index
    */
-  static readonly MINE_TAB_INDEX = 1;
+  static readonly MINE_TAB_INDEX = 3;
 
   /**
    * baseUrl
