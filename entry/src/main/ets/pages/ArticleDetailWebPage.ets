@@ -64,7 +64,10 @@ struct ArticleDetailPage {
             clearInterval(this.intervalLoading);
             this.intervalLoading = -1;
           }
-        }).height('100%').width('100%').border({width:1,color:Color.Red})
+        })
+        .height('100%')
+        .width('100%')
+        .margin({top:45})
 
       if (this.isLoading) {
         Progress({

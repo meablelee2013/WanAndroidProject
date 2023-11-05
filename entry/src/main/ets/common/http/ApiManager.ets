@@ -24,8 +24,8 @@ export default class ApiManager {
 
   }
 
-  async requestHomeArticle(): Promise<HomeArticleResponse> {
-    var response = await TaskManager.getInstance().requestHomeArticle()
+  async requestHomeArticle(page:number): Promise<HomeArticleResponse> {
+    var response = await TaskManager.getInstance().requestHomeArticle(page)
     if (response.code == -1) {
 
     }

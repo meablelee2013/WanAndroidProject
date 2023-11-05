@@ -11,10 +11,10 @@ import {
   Response,
   Header,
   Headers,
-  Query
+  Query,
 } from '@ohos/retrofit';
 import { HomeArticleResponse } from '../response/HomeArticleResponse';
-import {  HomeBannerResponse } from '../response/HomeBannerResponse';
+import { HomeBannerResponse } from '../response/HomeBannerResponse';
 
 @BasePath("/")
 export default class DataService extends BaseService {
@@ -23,8 +23,8 @@ export default class DataService extends BaseService {
     return <Response<HomeBannerResponse>> {}
   }
 
-  @GET("article/list/1/json")
-  async getHomeArticle(): Promise<Response<HomeArticleResponse>> {
+  @GET("article/list/{page}/json")
+  async getHomeArticle(@UrlPath("page")  page: number): Promise<Response<HomeArticleResponse>> {
     return <Response<HomeArticleResponse>> {}
   }
 }

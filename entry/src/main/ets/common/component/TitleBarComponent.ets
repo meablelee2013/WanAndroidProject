@@ -22,7 +22,7 @@ import router from '@ohos.router';
 @Component
 export default struct TitleBarComponent {
   isBack: boolean = true;
-  title: string = 'wanandroid';
+  title: string = 'WanAndroid';
 
   build() {
     Row() {
@@ -38,13 +38,13 @@ export default struct TitleBarComponent {
 
       Text(this.title)
         .fontColor(Color.Black)
-        .fontSize($r('sys.float.ohos_id_text_size_headline8'))
+        .fontSize($r('sys.float.ohos_id_text_size_headline6'))
         .fontWeight(FontWeight.Medium)
         .margin({ left: $r('app.float.title_text_margin_left') })
     }
     .width('100%')
     .height('6%')
-    .margin({top:45})
+    .margin({ top: 45 })
     .padding({ left: $r('app.float.title_padding_left') })
   }
 }

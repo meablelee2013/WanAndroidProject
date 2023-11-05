@@ -20,8 +20,8 @@ export class TaskManager {
     return response
   }
 
-  async requestHomeArticle(): Promise<ApiResponse<HomeArticleResponse>> {
-    var task = new taskPool.Task(requestHomeArticleFuc);
+  async requestHomeArticle(page:number): Promise<ApiResponse<HomeArticleResponse>> {
+    var task = new taskPool.Task(requestHomeArticleFuc,page);
     var response = await taskPool.execute(task) as ApiResponse<HomeArticleResponse>
     return response
   }
@@ -46,14 +46,14 @@ async function requestHomeBannerFuc(): Promise<ApiResponse<HomeBannerResponse>> 
 
 }
 
-async function requestHomeArticleFuc(): Promise<ApiResponse<HomeArticleResponse>> {
+async function requestHomeArticleFuc(page:number): Promise<ApiResponse<HomeArticleResponse>> {
   "use concurrent"
   let code: number = 0
   let message: string = ""
   let result: HomeArticleResponse
   try {
     let dataService = new ServiceBuilder().setEndpoint(CommonConstants.BASE_URL).build(DataService)
-    let resp: Response<HomeArticleResponse> = await dataService.getHomeArticle()
+    let resp: Response<HomeArticleResponse> = await dataService.getHomeArticle(page)
     code = resp.code();
     message = resp.message()
     result = resp.result

@@ -7,7 +7,7 @@
   "main": "",
   "version": "1.0.0",
   "dependencies": {
-//    "@ohos/axios": "file:../lib/axios.har",
+    "@ohos/axios": "file:../lib/axios.har",
     "@ohos/retrofit": "file:../lib/retrofit.har"
   }
 }

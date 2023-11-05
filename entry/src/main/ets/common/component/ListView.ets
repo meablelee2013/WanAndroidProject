@@ -1,9 +1,57 @@
-import { HomeArticle, HomeArticleModel } from '../http/response/HomeArticleResponse'
+import { HomeArticle, HomeArticleModel, HomeArticleResponse } from '../http/response/HomeArticleResponse'
 import router from '@ohos.router'
+import { Logger } from '../utils/Logger'
+import ApiManager from '../http/ApiManager'
+import axios, { Axios, AxiosError, AxiosResponse } from '@ohos/axios'
 
 @Component
 export default struct ListView {
-  @Link homeArticleList: HomeArticle[]
+  @State homeArticleList: Array<HomeArticle> = new Array()
+  @State page: number = 0
+
+  aboutToAppear() {
+    this.requestHomeArticle()
+  }
+
+  requestHomeArticle() {
+    // ApiManager.getInstance().requestHomeArticle(this.page).then((resp: HomeArticleResponse) => {
+    //   if (resp.errorCode == 0 && resp.data != null) {
+    //     if (this.page === 0) {
+    //       this.homeArticleList = resp.data.datas
+    //     } else {
+    //       if (resp.data != null && resp.data.datas != null) {
+    //         resp.data.datas.forEach(item => {
+    //           this.homeArticleList.push(item);
+    //         })
+    //       }
+    //     }
+    //     this.homeArticleList.forEach(item => {
+    //       Logger.info("alex", item.title)
+    //     })
+    //   }
+    // }).catch((e) => {
+    //   Logger.info(e)
+    // })
+
+    let axios = globalThis.axios as Axios
+    axios.get<HomeArticleResponse, AxiosResponse<HomeArticleResponse>, null>(`article/list/${this.page}/json`)
+      .then((response: AxiosResponse<HomeArticleResponse>) => {
+        if (this.page === 0) {
+          this.homeArticleList = response.data.data.datas
+        } else {
+          if (response.data != null && response.data.data != null && response.data.data.datas != null) {
+            response.data.data.datas.forEach(item => {
+              this.homeArticleList.push(item);
+            })
+          }
+        }
+        this.homeArticleList.forEach(item => {
+          Logger.info("alex", item.title)
+        })
+      }).catch((error: AxiosError) => {
+    })
+
+  }
 
   build() {
     Column() {
@@ -30,10 +78,16 @@ export default struct ListView {
       .listDirection(Axis.Vertical) // 排列方向
       .edgeEffect(EdgeEffect.Spring) // 滑动到边缘无效果
       .onReachStart(() => {
-
+        if (this.page != 0) {
+          this.page = 0
+          this.requestHomeArticle()
+          Logger.error("alex", "onReachStart")
+        }
       })
       .onReachEnd(() => {
-
+        this.page = this.page + 1
+        this.requestHomeArticle()
+        Logger.error("alex", "onReachEnd")
       })
     }
     .height('100%')

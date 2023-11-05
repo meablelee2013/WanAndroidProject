@@ -87,6 +87,10 @@
     {
       "name": "slider_bottom_padding",
       "value": "21vp"
+    },
+    {
+      "name": "font_size",
+      "value": "16fp"
     }
   ]
 }

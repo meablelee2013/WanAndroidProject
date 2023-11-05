@@ -4,7 +4,7 @@ export interface HomeArticleResponse extends BaseResponse<HomeArticleModel> {}
 
 export interface HomeArticleModel {
   curPage: number
-  datas: HomeArticle[]
+  datas: Array<HomeArticle>
   offset: number
   over: boolean
   pageCount: number
