@@ -1,7 +1,6 @@
 import axios, { Axios, AxiosError, AxiosResponse } from '@ohos/axios'
 import { TreeModel, TreeResponse } from '../http/response/TreeResponse'
 import { Logger } from '../utils/Logger'
-import MineChildTreeList from './MineChildTreeList'
 
 @Component
 export default struct MineTreeList {
