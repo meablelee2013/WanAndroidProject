@@ -1,5 +1,5 @@
 import MineTreeList from './MineTreeList'
-import TitleBarComponent from './TitleBarComponent'
+import {TitleBarComponent} from './TitleBarComponent'
 
 @Preview
 @Component

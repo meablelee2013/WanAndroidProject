@@ -1,11 +1,20 @@
 import axios, { Axios, AxiosError, AxiosResponse } from '@ohos/axios'
+import FaultLogger from '@ohos.faultLogger'
 import { TreeModel, TreeResponse } from '../http/response/TreeResponse'
 import { Logger } from '../utils/Logger'
 
+@Preview
 @Component
 export default struct MineTreeList {
   @State treeList: Array<TreeModel> = new Array()
   @State treeChildList: Array<TreeModel> = new Array()
+  private controller: TabsController = new TabsController()
+  // @State fontColor: string = '#ff36ea14'
+  // @State selectedFontColor: string = '#ff0000'
+  @State currentIndex: number = 0
+  @State list: string[] = ["asdf", "124214", "asfsaf", "asdfafea", "fasdfsf", "fasdfsf", "fasdfsf"]
+  @State fontColor: string = '#182431'
+  @State selectedFontColor: string = '#007DFF'
 
   aboutToAppear() {
     let axios = globalThis.axios as Axios
@@ -20,31 +29,41 @@ export default struct MineTreeList {
 
   build() {
     Column() {
-
-      List({ space: 10 }) {
-        ForEach(this.treeList, (item: TreeModel) => {
-          ListItem() {
-            Column() {
-              Text(item.name)
-                .fontSize(18)
-                .fontWeight(FontWeight.Medium)
-                .textAlign(TextAlign.Start)
-                .width('100%')
-                .padding({ left: 16, top: 16 })
-              Row() {
-                ForEach(item.children, (item: TreeModel) => {
-                  Text(item.name).margin({ left: 16 })
-                })
-              }.margin({ top: 16, bottom: 16 }).flexShrink(10).width('100%').justifyContent(FlexAlign.Start)
-            }
-          }
+      Tabs({ barPosition: BarPosition.Start, controller: this.controller }) {
+        ForEach(this.list, (item: string, index: number) => {
+          TabContent() {
+            Text("test")
+          }.tabBar(this.TabBuilder(index, item)).width('100%')
         })
-      }.divider({ strokeWidth: 2, color: 0xFFFFFF, startMargin: 16, endMargin: 16 })
-      .listDirection(Axis.Vertical) // 排列方向
-      .edgeEffect(EdgeEffect.Spring) // 滑动到边缘无效果
+      }
+      .vertical(false)
+      .barMode(BarMode.Fixed)
+      .barHeight(56)
+      .animationDuration(400)
+      .onChange(index => {
+        this.currentIndex = index
+      })
+      .backgroundColor('#F1F3F5')
+    }.width('100%')
+  }
 
-    }.height('100%')
-    .backgroundColor(0xF1F3F5)
+  @Builder TabBuilder(index: number, name: string) {
+    Column() {
+      Text(name)
+        .fontColor(this.currentIndex === index ? this.selectedFontColor : this.fontColor)
+        .fontSize(16)
+        .fontWeight(this.currentIndex === index ? 500 : 400)
+        .lineHeight(22)
+        .margin({ top: 17, bottom: 7 });
+      Divider()
+        .strokeWidth(2)
+        .color('#007DFF')
+        .opacity(this.currentIndex === index ? 1 : 0);
+    }.width('100%');
+  }
 
+  tabOnchange(index: number) {
+    this.currentIndex = index
+    this.controller.changeIndex(index)
   }
 }

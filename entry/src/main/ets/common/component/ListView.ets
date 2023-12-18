@@ -4,6 +4,12 @@ import { Logger } from '../utils/Logger'
 import ApiManager from '../http/ApiManager'
 import axios, { Axios, AxiosError, AxiosResponse } from '@ohos/axios'
 
+import abilityAccessCtrl, { Permissions } from '@ohos.abilityAccessCtrl';
+import common from '@ohos.app.ability.common';
+import KVManager from '@ohos.data.distributedKVStore'
+
+const permissions: Array<Permissions> = ['ohos.permission.READ_CALENDAR'];
+
 @Component
 export default struct ListView {
   @State homeArticleList: Array<HomeArticle> = new Array()
@@ -50,7 +56,27 @@ export default struct ListView {
         })
       }).catch((error: AxiosError) => {
     })
+  }
 
+  reqPermissionFromUser(permissions: Array<Permissions>): void {
+
+    let context = getContext(this) as common.UIAbilityContext;
+    let atManager = abilityAccessCtrl.createAtManager();
+    atManager.requestPermissionsFromUser(context, permissions).then((data) => {
+      let grantStatus: Array<number> = data.authResults;
+      let length: number = grantStatus.length;
+      for (let i = 0; i < length; i++) {
+        if (grantStatus[i] === 0) {
+          // 用户授权，可以继续访问目标操作
+        } else {
+          // 用户拒绝授权，提示用户必须授权才能访问当前页面的功能，并引导用户到系统设置中打开相应的权限
+          return;
+        }
+      }
+      // 授权成功
+    }).catch((err) => {
+      console.error(`requestPermissionsFromUser failed, code is ${err.code}, message is ${err.message}`);
+    })
   }
 
   build() {
@@ -66,10 +92,11 @@ export default struct ListView {
               .textAlign(TextAlign.Start)
               .padding({ left: 16, right: 16 })
               .onClick(() => {
-                router.pushUrl({
-                  url: 'pages/ArticleDetailWebPage',
-                  params: { path: item.link }
-                })
+                this.reqPermissionFromUser(permissions)
+                // router.pushUrl({
+                //   url: 'pages/ArticleDetailWebPage',
+                //   params: { path: item.link }
+                // })
               })
           }
         })

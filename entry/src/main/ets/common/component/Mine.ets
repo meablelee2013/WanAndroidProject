@@ -1,10 +1,15 @@
+import router from '@ohos.router'
 import MineTreeList from './MineTreeList'
-import TitleBarComponent from './TitleBarComponent'
+import {TitleBarComponent} from './TitleBarComponent'
 
-@Preview
 @Component
 export default struct Mine {
   build() {
-    Text('Mine')
+    Button('Mine')
+      .onClick(() => {
+        router.pushUrl({
+          url: "pages/SecondPage"
+        })
+      })
   }
 }

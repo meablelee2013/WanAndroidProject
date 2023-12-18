@@ -1,26 +1,41 @@
 {
   "app": {
+    //    "signingConfigs": [
+    //      {
+    //        "name": "default",
+    //        "type": "HarmonyOS",
+    //        "material": {
+    //          "certpath": "/Users/lizhigang/.ohos/config/auto_debug_WanAndroidProject_com.ruma.android_260086000048644587.cer",
+    //          "storePassword": "0000001A3491C42B54422033BF191E9E47BEB015CBA4F7B5D448CA91A396410EDBF013D8DABA61B33B56",
+    //          "keyAlias": "debugKey",
+    //          "keyPassword": "0000001A379AE62B917CDD13375DEE97A0F603ED8EE37CDE23A2B2839E933D3465F9DDA47E97E83C58DB",
+    //          "profile": "/Users/lizhigang/.ohos/config/auto_debug_WanAndroidProject_com.ruma.android_260086000048644587.p7b",
+    //          "signAlg": "SHA256withECDSA",
+    //          "storeFile": "/Users/lizhigang/.ohos/config/auto_debug_WanAndroidProject_com.ruma.android_260086000048644587.p12"
+    //        }
+    //      }
+    //    ],
+    "compileSdkVersion": 9,
+    "compatibleSdkVersion": 9,
+    "products": [
+      {
+        "name": "default",
+        "signingConfig": "default"
+      }
+    ],
     "signingConfigs": [
       {
         "name": "default",
         "type": "HarmonyOS",
         "material": {
           "certpath": "/Users/lizhigang/.ohos/config/auto_debug_WanAndroidProject_com.ruma.android_260086000048644587.cer",
-          "storePassword": "0000001A3491C42B54422033BF191E9E47BEB015CBA4F7B5D448CA91A396410EDBF013D8DABA61B33B56",
+          "storePassword": "0000001B4AD74C08BABFAE511456101186228FBEF6756A768A899D5E26BB24B27AEA9F1BC3D07D845362F3",
           "keyAlias": "debugKey",
-          "keyPassword": "0000001A379AE62B917CDD13375DEE97A0F603ED8EE37CDE23A2B2839E933D3465F9DDA47E97E83C58DB",
+          "keyPassword": "0000001B80FC1E7691AE1C30AC3CF61014673688B968D7C3598795FB96D3E835A08F595BB3BFC8DBC3E014",
           "profile": "/Users/lizhigang/.ohos/config/auto_debug_WanAndroidProject_com.ruma.android_260086000048644587.p7b",
           "signAlg": "SHA256withECDSA",
           "storeFile": "/Users/lizhigang/.ohos/config/auto_debug_WanAndroidProject_com.ruma.android_260086000048644587.p12"
         }
-      }
-    ],
-    "compileSdkVersion": 9,
-    "compatibleSdkVersion": 9,
-    "products": [
-      {
-        "name": "default",
-        "signingConfig": "default",
       }
     ]
   },

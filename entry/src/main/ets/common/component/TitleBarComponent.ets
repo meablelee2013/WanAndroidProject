@@ -20,7 +20,7 @@ import router from '@ohos.router';
  */
 @Preview
 @Component
-export default struct TitleBarComponent {
+export struct TitleBarComponent {
   isBack: boolean = true;
   title: string = 'WanAndroid';
 
@@ -43,8 +43,7 @@ export default struct TitleBarComponent {
         .margin({ left: $r('app.float.title_text_margin_left') })
     }
     .width('100%')
-    .height('6%')
-    .margin({ top: 45 })
+    .height('7%')
     .padding({ left: $r('app.float.title_padding_left') })
   }
 }

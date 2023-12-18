@@ -1,5 +1,5 @@
 import SwiperView from './SwiperView'
-import TitleBarComponent from './TitleBarComponent'
+import { TitleBarComponent } from './TitleBarComponent'
 import { HomeBanner, HomeBannerResponse } from '../http/response/HomeBannerResponse'
 import ApiManager from '../http/ApiManager'
 import { Logger } from '../utils/Logger'
@@ -27,10 +27,9 @@ export default struct Home {
 
   build() {
     Flex({ direction: FlexDirection.Column, justifyContent: FlexAlign.Start, alignContent: FlexAlign.Center }) {
-
       TitleBarComponent({ isBack: false })
       SwiperView({ homeBannerList: $homeBannerList })
-      ListView( )
+      ListView()
 
     }.height('100%').width('100%')
 
