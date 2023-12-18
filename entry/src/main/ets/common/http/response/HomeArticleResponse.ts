@@ -19,6 +19,7 @@ export interface HomeArticle {
   author: string
   canEdit: Boolean
   chapterId: number
+  chapterName:string
   collect: Boolean
   courseId: number
   desc: string
@@ -29,8 +30,8 @@ export interface HomeArticle {
   id: number
   isAdminAdd: Boolean
   link: string
-  nickDate: Date
-  niceShareDate: Date
+  niceDate: string
+  niceShareDate: string
   origin: string
   prefix: string
   projectLink: string

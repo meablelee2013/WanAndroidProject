@@ -12,7 +12,7 @@ export default struct MineTreeList {
   // @State fontColor: string = '#ff36ea14'
   // @State selectedFontColor: string = '#ff0000'
   @State currentIndex: number = 0
-  @State list: string[] = ["asdf", "124214", "asfsaf", "asdfafea", "fasdfsf", "fasdfsf", "fasdfsf"]
+  @State list: string[] = ["asdf", "124214", "asfsaf", "asfea", "fasdfsf", "fasdfsf", "fasdfsf"]
   @State fontColor: string = '#182431'
   @State selectedFontColor: string = '#007DFF'
 

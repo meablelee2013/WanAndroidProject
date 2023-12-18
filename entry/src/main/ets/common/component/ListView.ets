@@ -7,8 +7,10 @@ import axios, { Axios, AxiosError, AxiosResponse } from '@ohos/axios'
 import abilityAccessCtrl, { Permissions } from '@ohos.abilityAccessCtrl';
 import common from '@ohos.app.ability.common';
 import KVManager from '@ohos.data.distributedKVStore'
+import intl from '@ohos.intl';
 
 const permissions: Array<Permissions> = ['ohos.permission.READ_CALENDAR'];
+
 
 @Component
 export default struct ListView {
@@ -79,25 +81,50 @@ export default struct ListView {
     })
   }
 
+  formatDate(date: number) {
+    let dateFmt = new intl.DateTimeFormat("zh-Hans-CN", {
+      year: 'numeric',
+      month: 'numeric',
+      day: 'numeric',
+      hour: 'numeric',
+      minute: 'numeric',
+      second: 'numeric'
+    });
+    var dateFormat = dateFmt.format(new Date(date))
+    return dateFormat
+  }
+
   build() {
     Column() {
       List({ space: 10 }) {
         ForEach(this.homeArticleList, (item: HomeArticle) => {
           ListItem() {
-            Text(item.title)
-              .width('100%')
-              .height(60)
-              .fontSize(18)
-              .fontColor(Color.Black)
-              .textAlign(TextAlign.Start)
-              .padding({ left: 16, right: 16 })
-              .onClick(() => {
-                this.reqPermissionFromUser(permissions)
-                // router.pushUrl({
-                //   url: 'pages/ArticleDetailWebPage',
-                //   params: { path: item.link }
-                // })
-              })
+            Column() {
+              Text(item.niceDate).alignSelf(ItemAlign.End).margin({ right: 16, top: 10 })
+              Text(item.title)
+                .width('100%')
+                .height(60)
+                .fontSize(18)
+                .fontColor(Color.Black)
+                .textAlign(TextAlign.Start)
+                .padding({ left: 16, right: 16 })
+                .onClick(() => {
+                  // this.reqPermissionFromUser(permissions)
+                  router.pushUrl({
+                    url: 'pages/ArticleDetailWebPage',
+                    params: { path: item.link }
+                  })
+                })
+              // Row() {
+              Text(item.chapterName)
+                .alignSelf(ItemAlign.Start)
+                .fontColor(Color.Blue)
+                .margin({ left: 16, right: 16, top: 10 })
+              //   Image($r("app.media.icons_heart_normal")).width(30).height(30)
+              // }.justifyContent(FlexAlign.SpaceBetween)
+              // .alignItems(VerticalAlign.Center)
+              // .margin({ left: 16, right: 16, top: 10 })
+            }
           }
         })
       }
