@@ -92,4 +92,12 @@ struct ArticleDetailPage {
 
     }
   }
+  pageTransition() {
+    //从底部进来
+    PageTransitionEnter({ duration: 600, curve: Curve.Smooth })
+      .slide(SlideEffect.Bottom);
+    //朝底部出去
+    PageTransitionExit({ duration: 600, curve: Curve.Smooth })
+      .slide(SlideEffect.Bottom);
+  }
 }
